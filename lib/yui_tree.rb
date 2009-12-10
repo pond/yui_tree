@@ -391,7 +391,7 @@ module YuiTree
   # Add in the YUI tree class methods and establish the helper calls
   # when the module gets included.
   #
-  def self.included( base )
+  def self.included( base ) # :nodoc:
     if ( YuiTree.default_options.nil? )
       config_file = File.join( RAILS_ROOT, 'config', 'yui_tree.yml' )
 
