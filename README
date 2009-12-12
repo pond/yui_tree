@@ -11,7 +11,7 @@ At the time of writing this plugin is designed to work with YUI version 2.7.0.
 From the root of the Rails application to which you wish to add the plugin,
 run this command:
 
-  script/plugin install svn://rubyforge.org/var/svn/yuitree/yui_tree
+  script/plugin install svn://rubyforge.org/var/svn/yuitree/yui_tree/
 
 If you wish to install the API documentation into "doc/plugins", next run:
 
