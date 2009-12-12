@@ -381,7 +381,7 @@ module YuiTree
   #
   def self.make_node_object( id, name, isLeaf, className = nil )
     {
-      :id        => id.to_s,#id.to_i,
+      :id        => id.to_s,
       :label     => ERB::Util.h( name.to_s ),
       :isLeaf    => !! isLeaf,
       :className => className
@@ -494,8 +494,8 @@ module YuiTree
     #   been set up - the string is written as innerHTML of the name field.
     #
     # <tt>:exclude</tt>::
-    #   An ID as an integer, or an object with a method 'id' which returns its
-    #   ID as an integer, or an array of either of these types (they can be
+    #   An ID (as an integer or string) or an object with a method 'id' which
+    #   returns its ID, or an array of either of these types (they can be
     #   mixed in the same array). Specifies items which will not be included
     #   in the tree even if the Controller returns them at any point. This
     #   works at the node addition level in JS, so it is *not a security
@@ -823,9 +823,17 @@ module YuiTree
     # Coerce an object into a JS array.
     #
     def coerce_to_array( data )
-      return []       if     ( data.nil?           )
-      return [ data ] unless ( data.is_a?( Array ) )
-      return data;
+      if ( data.nil? )
+        ary = []
+      elsif ( data.is_a?( Array ) )
+        ary = data
+      else
+        ary = [ data ]
+      end
+
+      return ary.map do | item |
+        ( item.respond_to?( :id ) ) ? item.id : item
+      end
     end
   end
 end

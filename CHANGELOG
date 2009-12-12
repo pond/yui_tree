@@ -1,0 +1,14 @@
+Version 1.01, 2009-12-12
+========================
+
+- Second public release.
+- Fixes ambiguity regarding data types for IDs in exclude,
+  expand and highlight lists and makes the JavaScript
+  comparison thereof more resilient to variations by
+  coercing values to strings for comparison.
+
+
+Version 1.00, 2009-12-09
+========================
+
+- First public release.
