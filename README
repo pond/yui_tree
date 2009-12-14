@@ -1,7 +1,8 @@
 = YUI Tree v1.01 (2009-12-12)
 
 The YUI Tree plugin integrates the Yahoo User Interface (YUI) library TreeView
-component into a Rails application. For more information on YUI and TreeView, please see http://developer.yahoo.com/yui/examples/treeview.
+component into a Rails application. For more information on YUI and TreeView,
+please see http://developer.yahoo.com/yui/examples/treeview.
 
 At the time of writing this plugin is designed to work with YUI version 2.7.0.
 
@@ -92,7 +93,8 @@ indentation looks good (if you care about such things!).
 
 ==== views/categories/new.html.erb or edit.html.erb
 
-Finally, invoke the tree from relevant views. Assuming the controller sets @category to the new Category or category being edited, then:
+Finally, invoke the tree from relevant views. Assuming the controller sets
+@category to the new Category or category being edited, then:
 
   <% form_for( @category ) do | f | %>
     <p>
