@@ -1,3 +1,21 @@
+Version 1.02, 2010-01-23
+========================
+
+To update to this version, use the usual plugin update mechanism:
+
+  script/plugin update yui_tree
+
+Changes since the previous version:
+
+- Exclude, expand or highlight lists now unlikely to be confused by
+  String or Fixnum objects which respond to "id". Stops accidental
+  misinterpretation of literally provided IDs as ActiveRecord
+  objects, leading to the incorrect calling of "id", in certain
+  circumstances.
+
+- Minor comment error fixed; documentation updated.
+
+
 Version 1.01, 2009-12-14
 ========================
 

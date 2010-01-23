@@ -489,9 +489,9 @@ module YuiTree
     #   can pass any relevant message, including one looked up from an
     #   internationalisation locale file (assuming Rails >= 2.3.x).
     #
-    #   Note that this string is used if a nodes is deselected so that no nodes
-    #   are highlighted and the "<tt>:target_name_field_id</tt>" option has
-    #   been set up - the string is written as innerHTML of the name field.
+    #   Note that this string is used if all nodes are deselected so that none
+    #   are highlighted, and if the "<tt>:target_name_field_id</tt>" option has
+    #   been set up; the string is written as innerHTML of that name field.
     #
     # <tt>:exclude</tt>::
     #   An ID (as an integer or string) or an object with a method 'id' which
@@ -832,7 +832,7 @@ module YuiTree
       end
 
       return ary.map do | item |
-        ( item.respond_to?( :id ) ) ? item.id : item
+        ( item.is_a?( Fixnum ) or item.is_a?( String ) or not item.respond_to?( :id ) ) ? item : item.id
       end
     end
   end
