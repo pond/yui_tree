@@ -3,11 +3,16 @@ Version 1.10, 2010-01-29
 
 Updating to this version is a little more complex than in previous releases
 because a support JavaScript file, exported into your application's "public"
-directory, has been changed too. First use the usual plugin update mechanism:
+directory, has been changed too. It seems quite difficult to persuade the
+plug-in update mechanism of "script/plugin update" to work, so instead, force
+reinstallation of the plug-in as follows:
 
-  script/plugin update yui_tree
+  script/plugin install svn://rubyforge.org/var/svn/yuitree/yui_tree/ --force
 
-If you have not made any changes to the YUI tree JavaScript code in this file:
+You will see various messages from the installer telling you about files it is
+*not* going to overwrite - so don't worry, your configuration YAML file will
+not be harmed. If you have not made any changes to the YUI tree JavaScript code
+in this file:
 
   public/javascripts/yui_tree/yui_tree_support.js
 
