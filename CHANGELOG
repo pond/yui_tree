@@ -1,3 +1,50 @@
+Version 1.10, 2010-01-29
+========================
+
+Updating to this version is a little more complex than in previous releases
+because a support JavaScript file, exported into your application's "public"
+directory, has been changed too. First use the usual plugin update mechanism:
+
+  script/plugin update yui_tree
+
+If you have not made any changes to the YUI tree JavaScript code in this file:
+
+  public/javascripts/yui_tree/yui_tree_support.js
+
+...then you can now overwrite this with the updated version by issuing this
+command from the root of your Rails application:
+
+  ruby vendor/plugins/yui_tree/update.rb
+
+...and your update is complete. If you did make your own changes to the YUI
+tree support script, though, you will need to merge the changes by hand. The
+updated plug-in's master copy of the script is held at:
+
+  vendor/plugins/yui_tree/lib/yui_tree/resources/javascripts/yui_tree/yui_tree_support.js
+
+Changes since the previous version:
+
+- Fixed name field text shown when a tree has nothing selected but has a
+  'none' string defined via the :include_blank option. Previously the given
+  text would only be shown if the user explicitly selected the tree's "none"
+  entry but not if the tree was shown for a resource where "none" applied
+  already (it always just used a blank string in this initial startup case).
+
+- Fixed silly mistake causing a failure to update the name field text of an
+  item selected in the root of the tree. The root nodes were being added
+  *before* the event handlers for changes of highlight were installed.
+
+- By request, added new :multi_expand option. Fully backwards compatible
+  with existing code. Normally a multiple selection tree allows multiple
+  nodes (branches) to open concurrently. A single selection tree only allows
+  one node (branch) to be open at a time. The multi_expand property can be
+  set to true or false to override this behaviour. The most obvious use is
+  to allow multiple branches of a single-selection tree to be concurrently
+  open. Setting the :multiple and :multi_expand options to the same value or
+  omitting the :multi_expand option altogether produces the same behaviour
+  as in previous versions of the plug-in.
+
+
 Version 1.02, 2010-01-23
 ========================
 

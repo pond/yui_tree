@@ -1,4 +1,4 @@
-= YUI Tree v1.02 (2010-01-23)
+= YUI Tree v1.10 (2010-01-29)
 
 The YUI Tree plugin integrates the Yahoo User Interface (YUI) library TreeView
 component into a Rails application. For more information on YUI and TreeView,
@@ -228,5 +228,5 @@ Please send feedback and questions to ahodgkin@rowing.org.uk
 
 = Copyright
 
-Copyright (c) 2009 Hipposoft (Andrew Hodgkinson).
+Copyright (c) 2009, 2010 Hipposoft (Andrew Hodgkinson).
 Released under the MIT license.

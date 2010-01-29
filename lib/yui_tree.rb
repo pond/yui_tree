@@ -538,6 +538,19 @@ module YuiTree
     #   A boolean (defaults to '<tt>false</tt>') which says that multiple
     #   items may be selected in the tree. See below for more.
     #
+    # <tt>:multi_expand</tt>::
+    #   An optional value; by default it inherits whatever has been set for
+    #   the "multiple" option (see above) and thus defaults to '<tt>false</tt>'
+    #   if neither is present in the caller's options hash. The option changes
+    #   the expansion behaviour of nodes in the tree. Normally, a multiple
+    #   selection tree allows multiple nodes to be open while a single
+    #   selection tree only allows one 'branch' to be visible at any time; if a
+    #   user opens a new branch, the others are closed. If you want to allow
+    #   any number of branches to be open, set the option to '<tt>true</tt>'.
+    #   Although setting this to '<tt>false</tt>' and <tt>:multiple</tt> to
+    #   '<tt>true</tt>' is allowed and does work, this is discouraged as the
+    #   result is likely to be very confusing for users.
+    #
     # <tt>:form_leaf_nodes_only</tt>::
     #   If '<tt>true</tt>', only the IDs of _leaf_ nodes will be written into
     #   the form field identified by the mandatory
@@ -672,18 +685,22 @@ module YuiTree
       data_for_xhr_call    = options.delete( :data_for_xhr_call    )
 
       multiple             = options.delete( :multiple             ) || false
+      multi_expand         = options.delete( :multi_expand         )
       propagate_up         = options.delete( :propagate_up         ) || false
       propagate_down       = options.delete( :propagate_down       ) || false
       name_field_separator = options.delete( :name_field_separator ) || ' '
       name_include_parents = options.delete( :name_include_parents )
       name_leaf_nodes_only = options.delete( :name_leaf_nodes_only ) || false
 
-      xhr_url = send( xhr_url_method )
+      xhr_url      = send( xhr_url_method )
+      multi_expand = multiple if ( multi_expand.nil? )
 
       # Allow minor API misuse...
 
-      multiple = true  if ( multiple == :true  )
-      multiple = false if ( multiple == :false )
+      multiple     = true  if ( multiple.to_s     == 'true'  )
+      multiple     = false if ( multiple.to_s     == 'false' )
+      multi_expand = true  if ( multi_expand.to_s == 'true'  )
+      multi_expand = false if ( multi_expand.to_s == 'false' )
 
       # Build a root collection if working with the "root_model" option.
 
@@ -751,7 +768,8 @@ module YuiTree
         :nameFieldSeparator => name_field_separator,
         :nameFieldBlank     => include_blank,
         :nameIncludeParents => name_include_parents,
-        :formLeafNodesOnly  => form_leaf_nodes_only
+        :formLeafNodesOnly  => form_leaf_nodes_only,
+        :multiExpand        => !! multi_expand
 
       }.delete_if { | k, v | v.nil? }
 

@@ -64,7 +64,7 @@ def careful_copy_all( src_root, src_add, dst_dir, extension )
       puts
       @warnings = true
     else
-      puts "Copying #{ src_add }/#{ File.basename( src_path ) }..."
+      puts "Copying #{ File.basename( src_path ) }..."
       FileUtils.cp( src_path, dst_path )
     end
   end
